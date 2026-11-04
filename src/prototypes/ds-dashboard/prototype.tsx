@@ -28,6 +28,7 @@ import {
   COMPONENTS,
   DECISIONS,
   FRONTS,
+  HEALTH_READING_DATE,
   MODULES,
   PATTERNS,
   SUMMARY,
@@ -388,7 +389,7 @@ function Home({ headingRef, onGo }: { headingRef: HeadingRef; onGo: (s: Section)
       tone: "warning",
       label: "Attention",
       title: `${blockers} open blockers in the health snapshot`,
-      detail: "Across the Atoms and Patterns fronts",
+      detail: "Across the Atoms and Business Rules fronts",
       to: "health",
       action: "See health",
     },
@@ -473,7 +474,7 @@ function Health({ headingRef }: { headingRef: HeadingRef }) {
       <div>
         <Heading headingRef={headingRef}>Health</Heading>
         <p className="text-sm text-muted-foreground">
-          One score per front, from the evidence the catalog collects. A snapshot, not a live reading.
+          One score per front, from the evidence the catalog collects. A reading of {HEALTH_READING_DATE}, not a live one.
         </p>
       </div>
       <ul className="flex flex-col gap-3">

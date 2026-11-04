@@ -6,6 +6,7 @@ import type { StoryDef } from "@/lib/registry/types"
 import { CaseFrame, type CaseFact, type CaseSection } from "@/components/case/case-frame"
 import { Callout, H, Measures, Points, Steps, T } from "@/components/case/case-copy"
 import { PrototypeSkeleton } from "@/components/prototype/prototype-frame"
+import { HEALTH_NEXT_READING_DATE, HEALTH_READING_DATE } from "@/prototypes/ds-dashboard/data"
 
 const DsDashboardPrototype = dynamic(
   () => import("@/prototypes/ds-dashboard/prototype").then((m) => m.DsDashboardPrototype),
@@ -17,7 +18,7 @@ const FACTS: readonly CaseFact[] = [
   { label: "Timeline", value: "About one month for the dashboard, on top of an ongoing design system" },
   { label: "Team", value: "Front-end developers and business analysts, the intended readers and users" },
   { label: "Stack", value: "React, TypeScript, Next.js, Tailwind, Storybook, Vitest, axe, GitHub Actions" },
-  { label: "Evidence", value: "A 14-module audit, a fidelity check on generated prototypes, a working run with more than one analyst. No adoption data yet" },
+  { label: "Evidence", value: "A 14-module audit, a fidelity check on generated prototypes, a working run with more than one analyst, a dated health reading of the catalog. No adoption data yet" },
   { label: "Status", value: "Dashboard working and tested, still in development. Team adoption is starting" },
 ]
 
@@ -78,7 +79,8 @@ const SECTIONS: readonly CaseSection[] = [
         <Measures
           items={[
             { value: "14", label: "Modules of the real product audited, one at a time" },
-            { value: "31", label: "Inconsistencies found, 28 of them confirmed in the real code with a root cause" },
+            { value: "31", label: "Inconsistencies found. I checked 28 against the real code and all 28 were confirmed, each with a root cause" },
+            { value: "2", label: "Bugs found this way before they became tickets" },
           ]}
         />
         <Points
@@ -200,6 +202,35 @@ const SECTIONS: readonly CaseSection[] = [
           The people who saw the dashboard said it will help a lot with governance and organization, and called it
           excellent and useful. That is feedback, not a measure.
         </T>
+        <H>Before: where the catalog stands on {HEALTH_READING_DATE}</H>
+        <T>
+          This is a starting point, not a result. I took the health score the catalog computes for itself, and I plan to
+          read it again on {HEALTH_NEXT_READING_DATE} and add the second reading next to this one.
+        </T>
+        <Measures
+          items={[
+            { value: "36.4", label: "Health of Business Rules, the lowest of six fronts (scale 0 to 100)" },
+            { value: "21", label: "Major blockers open on Business Rules" },
+            { value: "84.8", label: "Health of Distribution, the highest of six fronts" },
+            { value: "0 of 139", label: "Items rated mature or production-ready. Most are still in progress" },
+          ]}
+        />
+        <Points
+          items={[
+            {
+              title: "What the score measures",
+              body: "For each front of the system, it reads tests, documentation, business rule coverage and how the components are distributed. It reads the catalog, not the people using it.",
+            },
+            {
+              title: "What it does not measure",
+              body: "Adoption, time saved, fewer questions or fewer inconsistencies in the product. A higher score later would show that the catalog improved, not that anyone used the dashboard.",
+            },
+            {
+              title: "How the second reading will be compared",
+              body: "Same source, the catalog's automatic daily series. If the catalog or the scoring rules change in between, I will say so before comparing anything.",
+            },
+          ]}
+        />
         <Callout title="What this doesn&apos;t show.">
           The dashboard works and has been tested, and the team is starting to adopt it, but it is too early for numbers
           on time saved, fewer questions or fewer inconsistencies. The prototype pipeline has run with more than one business
@@ -220,8 +251,9 @@ const SECTIONS: readonly CaseSection[] = [
           started again I would ask one team for one decision first, then build the dashboard around that decision.
         </T>
         <T>
-          The next thing I need is a before and after, for example how many business rules have no test today and how
-          many a quarter from now. Without it, the dashboard describes the system but cannot yet show that it changed.
+          What I was missing was a before and after. The before is now on this page, dated {HEALTH_READING_DATE}. The
+          after is a second reading on {HEALTH_NEXT_READING_DATE}. Until then, the dashboard describes the system but
+          cannot show that it changed.
         </T>
       </>
     ),

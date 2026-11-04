@@ -119,13 +119,23 @@ export interface Front {
   blockers: number
 }
 
-/** Health by front, rounded from the real snapshot. */
+/** The date of the reading behind FRONTS. Shown in the prototype and in the case's "Before" block. */
+export const HEALTH_READING_DATE = "2026-11-04"
+
+/** When the same reading is scheduled to be taken again, for the "Before" block in the case. */
+export const HEALTH_NEXT_READING_DATE = "2027-02-04"
+
+/**
+ * Health by front, rounded from the real catalog's reading of 2026-11-04.
+ * Blockers are critical + major + minor. F6 (Governance & Architecture) is not
+ * part of the dashboard excerpt.
+ */
 export const FRONTS: readonly Front[] = [
-  { id: "F1", name: "Foundations", items: 4, health: 72, coverage: 49, blockers: 0 },
-  { id: "F2", name: "Atoms", items: 42, health: 67, coverage: 60, blockers: 2 },
-  { id: "F3", name: "Patterns & Compositions", items: 34, health: 69, coverage: 55, blockers: 1 },
-  { id: "F4", name: "Business Rules", items: 22, health: 69, coverage: 40, blockers: 0 },
-  { id: "F5", name: "Distribution", items: 31, health: 83, coverage: 53, blockers: 0 },
+  { id: "F1", name: "Foundations", items: 4, health: 43, coverage: 49, blockers: 0 },
+  { id: "F2", name: "Atoms", items: 55, health: 67, coverage: 62, blockers: 8 },
+  { id: "F3", name: "Patterns & Compositions", items: 34, health: 69, coverage: 56, blockers: 0 },
+  { id: "F4", name: "Business Rules", items: 23, health: 36, coverage: 58, blockers: 21 },
+  { id: "F5", name: "Distribution", items: 12, health: 85, coverage: 71, blockers: 0 },
 ]
 
 export const SUMMARY = {
