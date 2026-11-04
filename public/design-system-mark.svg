@@ -1,0 +1,5 @@
+<svg width="99" height="36" viewBox="0 0 99 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0.5" y="0.5" width="35" height="35" rx="9.5" fill="#71717a" fill-opacity="0.1" stroke="#71717a" stroke-opacity="0.3"/>
+  <path d="M11 18a7 7 0 1 1 14 0 7 7 0 0 1-14 0Z" stroke="#71717a" stroke-width="1.6"/>
+  <text x="46" y="23" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#71717a">Product</text>
+</svg>

@@ -1,0 +1,63 @@
+/*
+ * Shared layout-switching mechanism for every prototype's PrototypeStage: a
+ * table and a cards view of the same data, chosen by the STAGE's own
+ * container width (a container query), never the viewport. Scoped by
+ * [data-prototype-stage] instead of a per-case class so every case shares
+ * this one stylesheet.
+ *
+ * `data-layout` is optional. Omitting it (or setting it to anything other
+ * than "table"/"cards") leaves the switch purely width-driven — that's the
+ * whole behavior a case like Rimstack gets, whose demonstration is live
+ * calculation, not responsiveness. A case that wants a manual override
+ * (Treadline's Layout control) sets data-layout to "table" or "cards" to
+ * force one view regardless of width.
+ *
+ * Touch sizing is a property of the cards view, not of the width: whenever
+ * cards are the active view, list controls are at least 44 px tall.
+ */
+[data-prototype-stage] {
+  container: prototype-stage / inline-size;
+}
+
+[data-prototype-stage] [data-view="cards"] {
+  display: none;
+}
+
+[data-prototype-stage][data-layout="table"] [data-view="cards"] {
+  display: none;
+}
+
+[data-prototype-stage][data-layout="cards"] [data-view="table"] {
+  display: none;
+}
+
+[data-prototype-stage][data-layout="cards"] [data-view="cards"] {
+  display: block;
+}
+
+[data-prototype-stage][data-layout="cards"] :is([data-slot="button"], [data-slot="select-trigger"], [data-slot="input"]) {
+  min-height: 2.75rem;
+}
+
+@container prototype-stage (width < 48rem) {
+  [data-prototype-stage]:not([data-layout="table"]):not([data-layout="cards"]) [data-view="table"] {
+    display: none;
+  }
+
+  [data-prototype-stage]:not([data-layout="table"]):not([data-layout="cards"]) [data-view="cards"] {
+    display: block;
+  }
+
+  [data-prototype-stage]:not([data-layout="table"]):not([data-layout="cards"])
+    :is([data-slot="button"], [data-slot="select-trigger"], [data-slot="input"]) {
+    min-height: 2.75rem;
+  }
+}
+
+/* The shared Dialog animates in and out; honour the reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  [data-prototype-stage] :is([data-slot="dialog-content"], [data-slot="dialog-overlay"]) {
+    animation: none !important;
+    transition: none !important;
+  }
+}

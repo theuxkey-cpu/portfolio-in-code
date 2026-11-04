@@ -1,0 +1,28 @@
+/*
+ * Colors for the hand-made charts. Roles, not raw hex, so the light and dark
+ * values swap in one place. The three series slots are the first three of the
+ * validated categorical order (blue, orange, aqua), the ones that hold up when
+ * every pair is on screen at once. Aqua is under 3:1 on the light surface, so
+ * every chart that uses it also ships direct labels and a table view.
+ */
+.viz-root {
+  --viz-surface: oklch(1 0 0);
+  --viz-ink: #0b0b0b;
+  --viz-ink-2: #52514e;
+  --viz-grid: #e4e3df;
+  --viz-series-1: #2a78d6;
+  --viz-series-2: #eb6834;
+  --viz-series-3: #1baf7a;
+  --viz-target: #52514e;
+}
+
+.dark .viz-root {
+  --viz-surface: oklch(0.145 0 0);
+  --viz-ink: #f0efec;
+  --viz-ink-2: #c3c2b7;
+  --viz-grid: #2e2e2c;
+  --viz-series-1: #3987e5;
+  --viz-series-2: #d95926;
+  --viz-series-3: #199e70;
+  --viz-target: #c3c2b7;
+}
